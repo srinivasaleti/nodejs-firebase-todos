@@ -1,10 +1,8 @@
-var express = require('express')
-var todoRouter = express.Router()
+const express = require('express')
+const todoRouter = express.Router()
 const Firebase = require('../Firebase/config')
 const uuidv4 = require('uuid/v4');
 
-const todoList = []
-// define the home page route
 todoRouter.get('/', function(req, res) {
   Firebase.db().ref("todo").once("value", (snapshot) => {
     res.send(snapshot.val())
