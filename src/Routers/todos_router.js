@@ -46,4 +46,24 @@ todoRouter.post("/", function(req, res) {
   });
 })
 
+todoRouter.put("/:id", function(req, res) {
+  const id = req.params.id
+  const todo = {
+    text: req.body.text,
+    author: req.body.author,
+    completed: false,
+    created_at: Date.now(),
+    updated_at: Date.now(),
+  }
+
+  //Update the a todo
+  Firebase.db().ref("todo").update({
+    [id]: todo
+  }).then(() => {
+    res.send(todo)
+  }).catch(e => {
+    res.status(404).send()
+  });
+})
+
 module.exports = todoRouter
