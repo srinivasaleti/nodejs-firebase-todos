@@ -11,6 +11,21 @@ todoRouter.get('/', function(req, res) {
   })
 })
 
+todoRouter.get("/:id", function(req, res) {
+  const id = req.params.id
+  Firebase.db().ref(`todo/${id}`).once("value", (snapshot) => {
+    const todo = snapshot.val()
+    if (!todo) {
+      res.statusMessage = "Not found"
+      res.status(404).send()
+      return
+    }
+    res.send(snapshot.val())
+  }).catch(e => {
+    res.status(500).send()
+  })
+})
+
 todoRouter.post("/", function(req, res) {
   const todo = {
     text: req.body.text,
