@@ -2,9 +2,9 @@
   "name": "nodejs-firebase-todos",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon --inspect server.js"
+    "start": "nodemon --inspect src/server.js"
   },
   "author": "",
   "license": "ISC",
