@@ -6,7 +6,11 @@ const uuidv4 = require('uuid/v4');
 const todoList = []
 // define the home page route
 todoRouter.get('/', function(req, res) {
-  res.json(todoList);
+  Firebase.db().ref("todo").once("value", (snapshot) => {
+    res.send(snapshot.val())
+  }).catch(e => {
+    res.status(404).send()
+  })
 })
 
 todoRouter.post("/", function(req, res) {
