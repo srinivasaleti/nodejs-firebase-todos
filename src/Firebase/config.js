@@ -1,4 +1,5 @@
 const admin = require("firebase-admin")
+//make sure you kept serviceAccountKey.json
 const serviceAccount = require("./serviceAccountKey.json")
 
 const Firebase = {
